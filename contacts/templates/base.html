@@ -1,0 +1,207 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+    />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{%static './css/main.css' %}" />
+
+    <!-- Fonts & Icons -->
+    
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
+    />
+
+
+    <link
+      rel="title icon" href="{% static 'images/contact-icon.png' %}"
+    />
+    <title>
+      {% block title %}
+
+      {% endblock title %}
+    </title>
+  </head>
+  <body>
+    <!-- Navbar -->
+
+    <nav>
+      <a class="logo" href={% url 'home' %}>
+        <i class="fas fa-user-circle"></i>&nbsp;iPark
+      </a>
+
+    {% if request.user.is_authenticated %}
+        <a href="{% url 'logout' %}" class= "mr-4 text-white" >
+          <i class = "fas fa-sign-in-alt"></i> &nbsp; Log out
+        </a>
+
+        <p class = "feature-link m-0 p-0">
+        <a href="{% url 'create' %}" class= "mr-4 text-white" >
+          <i class = "fas fa-plus"></i> &nbsp; Add Slot for Cars
+        </a>
+        </p>
+
+    {% else %}
+        <a href="{% url 'signup' %}" class= "mr-4 text-white" >
+          <i class = "fas fa-user-plus" ></i> &nbsp; Sign Up
+        </a>
+
+        <a href="{% url 'login' %}" class= "mr-4 text-white" >
+          <i class = "fas fa-sign-in-alt"></i> &nbsp; Login
+        </a>
+
+    {% endif %}
+
+    <p class = "feature-link m-0 p-0">
+
+      <form class="form-inline my-2" action="{% url 'search' %}" method = "GET">
+        <!--      we dont need this token now {% csrf_token %}  -->
+        <input
+          class="form-control search-box"
+          type="search"
+          placeholder="Find cars..."
+          name = "search_term"
+
+          value="{{search_term}}"
+        />
+        <!-- button class="btn" type="submit"><i class="fas fa-search"></i></button -->
+      </form>
+    </nav>
+    <!-- Navbar ends -->
+    <br />
+    <div class="flex-wrapper">
+    <!-- Main Section >
+    <div class="container">
+      <h3 class="heading font-weight-light">Here are your contacts</h3>
+      <hr />
+    </div>
+    <div class="container main-part">
+      <!-- Card for details >
+      <div class="card my-2 mx-2 boy-card">
+        <img src="https://placeimg.com/230/130/people" class="img-fluid" />
+        <div class="card-header">
+          <a href="detail.html" class="text-white header-link"
+            ><i class="fas fa-mars mr-2"></i> John Wood</a
+          >
+        </div>
+        <div class="card-body pb-0">
+          <p>
+            <i class="fas fa-at mr-2"></i>
+            <a href="mailto:samirphuyal65@gmail.com">johnwood@gmail.com</a>
+          </p>
+          <p>
+            <i class="fas fa-phone mr-2"></i>
+            <a href="tel:9001010100">9001010100</a>
+          </p>
+          <p><i class="fas fa-info-circle mr-2"></i> Friend</p>
+        </div>
+      </div>
+      <!-- Card for details ends >
+
+      <div class="card my-2 mx-2 girl-card">
+        <img src="https://placeimg.com/230/130/people" class="img-fluid" />
+        <div class="card-header">
+          <a href="detail.html" class="text-white header-link"
+            ><i class="fas fa-venus mr-2"></i> June Pink</a
+          >
+        </div>
+        <div class="card-body pb-0">
+          <p>
+            <i class="fas fa-at mr-2"></i>
+            <a href="mailto:pinkjune@gmail.com">pinkjune@gmail.com</a>
+          </p>
+          <p>
+            <i class="fas fa-phone mr-2"></i>
+            <a href="tel:9819090909">9819090909</a>
+          </p>
+          <p><i class="fas fa-info-circle mr-2"></i> Friend</p>
+        </div>
+      </div>
+    </div>
+    <!-- Main Section ends-->
+      {% block content %}
+      {% endblock content %}
+      <!-- footer -->
+      &nbsp &nbsp &nbsp &nbsp
+      <br><br>
+      <p></p>
+
+      
+      <footer class="site-footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-9"><!--col-sm-12-->
+              <h6>About</h6>
+              <p class="text-justify"><i></i>We are a company that tries to solve the problems related to parking. iPark through
+              it's technologically advanced solutions provides an efficient parking management system and vehicle tracking system.</p>
+            </div>
+            <div class="col-md-3"><!--col-xs-6 -->
+              <h6>Quick Links</h6>
+              <ul class="footer-links">
+                <li><a href="">About Us</a></li>
+                <li><a href="">Contact Us</a></li>
+              </ul>
+            </div>
+          </div>
+          <hr>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8 col-sm-6 col-xs-12">
+              <p class="copyright-text">Copyright &copy; Ctrl+Alt+Defeat - Smart Parking System 2020.
+              </p>
+            </div>
+
+            <div class="col-md-4 col-sm-6 col-xs-12">
+              <ul class="social-icons">
+                <li><a class="github" href="https://github.com/dwij2812">
+                    <i class="fab fa-github"></i>
+                    </a>
+                </li>
+                <li><a class="linkedin" href="https://www.linkedin.com/in/adarsh-55-jaiswal/">
+                    <i class="fa fa-linkedin"></i>
+                    </a>
+                </li>
+                <li><a class="facebook" href="https://www.facebook.com/gunjan.agrawal.54390876">
+                    <i class="fa fa-facebook-square"></i>
+                    </a>
+                </li>
+                <li><a class="twitter" href="https://twitter.com/anmol_tomer_cc">
+                    <i class="fa fa-twitter"></i>
+                    </a>
+                </li>  
+                <li><a class="instagram" href="https://www.instagram.com/avengineer_rahul/">
+                    <i class="fa fa-instagram"></i>
+                    </a>
+                </li> 
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <!-- footer ends -->
+  </body>
+</html>
+

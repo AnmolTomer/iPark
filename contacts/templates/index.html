@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+
+{% block title %}
+My Slots
+{% endblock title %}
+
+{% block content %}
+
+<!-- Main Section -->
+<div class="container">
+  <h3 class="heading font-weight-light"></h3>
+  <hr />
+</div>
+<div class="container main-part">
+
+  {% if contacts %}
+    {% for contact in contacts %}
+      <!-- WE HAVE TO WRITE THE INCLUDE STATEMNT TO INCLUDE THE PARTIALS-->
+      {% include 'partials/_card.html' %}
+    {% endfor %}
+  {% else %}
+    <p>No Contacts</p>
+  {% endif %}
+  <!-- Card for details -->
+
+  <!-- Card for details ends -->
+<div>
+
+<!-- Main Section ends-->
+
+{% endblock content %}

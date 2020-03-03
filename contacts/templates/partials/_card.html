@@ -1,0 +1,68 @@
+{% load static %}
+{% if contact.avalibility == 'empty' %}
+<!-- It checks if the key-word 'detail' is present in the link or not -->
+    <div class="card my-2 mx-2 boy-card" {% if 'detail' in request.path %} mx-auto w-100 {% endif %}>
+      <!--here writing url is important
+        writing this much is not enough as we have to tell
+          Django to solve those media files -->
+      <img src="{% if contact.image %}
+                  {{contact.image.url}}
+                {% else %}
+                  {static 'images/green-colour.png'}
+                {% endif %}
+
+      " class="img-fluid" />
+      <div class="card-header">
+        <a href="{% url 'detail' contact.id %}" class="text-white header-link">
+          <i class="fas fa-parking"></i> Empty
+        </a>
+      </div>
+      <div class="card-body pb-0">
+        <p>
+          <i class="fas mr-2"></i>
+          <a href="">{{contact.sl_no}}</a>
+        </p>
+        {% comment %} <p>
+          <i class="fas fa-phone mr-2"></i>
+          <a href="tel:{{contact.phone}}">{{contact.phone}}</a>
+        </p> {% endcomment %}
+        {% if contact.info == 'Premium Customer' %}
+          <p id="new-color"><i class="fas fa-info mr-2"></i> {{contact.info}}</p>  
+        {% else %}
+          <p><i class="fas fa-info-circle mr-2"></i> {{contact.info}}</p>  
+        {% endif %}
+        
+      </div>
+    </div>
+{% else %}
+    <div class="card my-2 mx-2 girl-card">
+      <img src="{% if contact.image %}
+                  {{contact.image.url}}
+                {% else %}
+                  {static 'images/red-colour.png'}
+                {% endif %}
+
+      " class="img-fluid" />
+      <div class="card-header">
+        <a href="{% url 'detail' contact.id %}" class="text-white header-link"
+          ><i class="fab fa-font-awesome-flag"></i>&nbsp{{contact.number_plate}}</a
+        >
+      </div>
+      <div class="card-body pb-0">
+        <p>
+          <i class="fas mr-2"></i>
+          <a href="">{{contact.sl_no}}</a>
+        </p>
+        {% comment %} <p>
+          <i class="fas fa-phone mr-2"></i>
+          <a href="tel:{{contact.phone}}">{{contact.phone}}</a>
+        </p> {% endcomment %}
+        {% if contact.info == 'Premium Customer' %}
+          <p id="new-color"><i class="fas fa-info mr-2"></i> {{contact.info}}</p>  
+        {% else %}
+          <p><i class="fas fa-info-circle mr-2"></i> {{contact.info}}</p>  
+        {% endif %}
+      </div>
+    </div>
+  <!-- /div-->
+{% endif %}

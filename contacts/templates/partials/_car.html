@@ -1,0 +1,47 @@
+{% load static %}
+{% for each_car in car %}
+    {% if each_car.number_plate|stringformat:"s" == contact.number_plate|stringformat:"s" %}
+        <div class="card my-2 mx-2 girl-card" {% if 'detail' in request.path %} mx-auto w-100 {% endif %}>
+            <img src="{% if contact.image %}
+                        {{contact.image.url}}
+                    {% else %}
+                        {static 'images/red-colour.png'}
+                    {% endif %}
+
+            " class="img-fluid" />
+            <div class="card-header">
+            <a href="{% url 'detail' contact.id %}" class="text-white header-link"
+                ><i class="fab fa-font-awesome-flag"></i>&nbsp&nbsp{{contact.number_plate}}</a
+            >
+            </div>
+            <div class="card-body pb-0">
+            <p>
+                <i class="fas fa-clock"></i>
+                <a href="">{{each_car.entry_time}}</a>
+            </p>
+            <p>
+                <i class="fas fa-signature"></i>
+                <a href="">{{each_car.name}}</a>
+            </p>
+            <p>
+                <i class="fas fa-car"></i>
+                <a href="">{{each_car.service_used}}</a>
+            </p>
+            <p>
+                <i class="fas fa-phone"></i>
+                <a href="">{{each_car.phone}}</a>
+            </p>
+
+            {% if contact.info == 'Premium Customer' %}
+                <p id="new-color"><i class="fas fa-info mr-2"></i> {{contact.info}}</p>  
+            {% else %}
+                <p><i class="fas fa-info-circle mr-2"></i> {{contact.info}}</p>  
+            {% endif %}
+            </div>
+        </div>
+    {% endif %}
+{% endfor %}
+
+
+  <!-- /div-->
+

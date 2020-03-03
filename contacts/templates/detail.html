@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{contact.name}}
+{% endblock title %}
+
+{% block content %}
+<!-- Main Section -->
+<h3 class="heading font-weight-light"></h3>
+<div class="container">
+  <h2 class="heading font-weight-light text-center">{{contact.sl_no}}</h2>
+  <hr />
+</div>
+<div class="container main-part">
+  <!-- Card for details -->
+  {% if contact.number_plate == NONE %}
+    {% include 'partials/_card.html' %}
+  {% else %}
+    {% include 'partials/_car.html' %}
+  {% endif %}
+
+  <!-- <div class="card my-2 boy-card w-25 mx-auto">
+    <img src="https://placeimg.com/230/130/people" class="img-fluid" />
+    <div class="card-header">
+      <a href="#" class="text-white header-link"
+        ><i class="fas fa-mars mr-2"></i> John Wood</a
+      >
+    </div>
+    <div class="card-body pb-0">
+      <p>
+        <i class="fas fa-at mr-2"></i>
+        <a href="mailto:johonwood@gmail.com">johonwood@gmail.com</a>
+      </p>
+      <p>
+        <i class="fas fa-phone mr-2"></i>
+        <a href="tel:9001010100">9001010100</a>
+      </p>
+      <p><i class="fas fa-info-circle mr-2"></i> Friend</p>
+    </div>
+  </div> -->
+</div>
+<h5 class="text-center my-3 font-weight-light">Date Added : &nbsp {{contact.date_added}}</h5>
+<div class="container mt-3">
+  <p class="text-center text-light">
+    <a class = "btn btn-info px-5" href="{% url 'update' contact.id %}">
+      <i class ="far fa-edit"></i> &nbsp; Update
+    </a>
+    &nbsp &nbsp &nbsp &nbsp
+    <a class = "btn btn-danger px-5" href="{% url 'delete' contact.id %}">
+      <i class ="fas fa-trash-alt"></i> &nbsp; Delete
+    </a>
+  </p>
+</div>
+<!-- Main Section ends-->
+{% endblock content %}
